@@ -1,0 +1,43 @@
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     /* set the height to the full viewport height */
+    flex-direction: column;
+    text-align: center;
+  }
+  .button {
+    display: inline-block;
+    background-color: #F9C80E; /* yellow color */
+    border: none;
+    color: #FFFFFF; /* white text color */
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 8px 16px;
+    margin: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); /* add a shadow effect */
+  }
+  
+  .button:hover {
+    transform: translateY(-2px); /* add a hover effect */
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25); /* increase the shadow effect */
+  }
+  
+  .yellow {
+    background-color: #F9C80E; /* yellow color */
+  }
+  
+  /* adjust the styles for the first button */
+  .button:first-child {
+    margin-left: 0;
+  }
+  
+  /* adjust the styles for the last button */
+  .button:last-child {
+    margin-right: 0;
+  }
+  
