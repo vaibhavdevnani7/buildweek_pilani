@@ -58,6 +58,122 @@ def auth():
     response.set_cookie("acc_tkn", access_token, max_age=AUTH_EXP)
     return response, 200
 
+@view.route("/api/transactions", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def transactions():
+    cookie = request.cookies.get("acc_tkn")
+    userid = jwt.decode(cookie, JWT_SECRET, algorithms=["HS256"])["user_id"]
+    user = models.User.query.filter_by(id=userid).first()
+    print(user)
+    transactions = models.Transactions.query.filter_by(user_id=user.username).all()
+    jsontransactions = []
+    for transaction in transactions:
+        jsontransactions.append(models.serialize(transaction))
+    return {"transactions": jsontransactions}, 200
+
+@view.route("/api/requests", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def requests():
+    cookie = request.cookies.get("acc_tkn")
+    userid = jwt.decode(cookie, JWT_SECRET, algorithms=["HS256"])["user_id"]
+    user = models.User.query.filter_by(id=userid).first()
+    print(user)
+    transactionrequests = models.Requests.query.filter_by(address=user.username).all()
+    jsonrequests = []
+    for transaction in transactionrequests:
+        dict = models.serialize(transaction)
+        dict['target']=user.wallet_address
+        jsonrequests.append(dict)
+    return {"requests": jsonrequests}, 200
+
+@view.route("/api/splitmoney", methods=["POST"])
+@cross_origin(supports_credentials=True)
+def splitmoney():
+    print(request.get_json())
+    data = request.get_json()
+    cookie = request.cookies.get("acc_tkn")
+    userid = jwt.decode(cookie, JWT_SECRET, algorithms=["HS256"])["user_id"]
+    user = models.User.query.filter_by(id=userid).first()
+    transaction = models.Transactions(
+        user_id=user.username,
+        transactiontype='split',
+        details=data
+    )
+    i=0
+    amounts = data['splits'].split(',')
+    for payee in data['payees'].split(','):
+        txnrequest = models.Requests(
+            user_id=user.username,
+            address=payee,
+            amount=amounts[i],
+            status='Pending',
+            details=data)
+        print(txnrequest)
+        db.session.add(txnrequest)
+        db.session.commit()
+        i+=1
+    print(transaction)
+    db.session.add(transaction)
+    db.session.commit()
+
+    response = make_response()
+    return response, 200
+
+@view.route("/api/requestmoney", methods=["POST"])
+@cross_origin(supports_credentials=True)
+def requestmoney():
+    print(request.get_json())
+    data = request.get_json()
+    cookie = request.cookies.get("acc_tkn")
+    userid = jwt.decode(cookie, JWT_SECRET, algorithms=["HS256"])["user_id"]
+    user = models.User.query.filter_by(id=userid).first()
+    transaction = models.Transactions(
+        user_id=user.username,
+        transactiontype='request',
+        details=data
+    )
+    
+    txnrequest = models.Requests(
+        user_id=user.username,
+        address=data['address'],
+        amount=data['amount'],
+        status='Pending',
+        details=data)
+    print(txnrequest)
+    db.session.add(txnrequest)
+    db.session.commit()
+    print(transaction)
+    db.session.add(transaction)
+    db.session.commit()
+
+    response = make_response()
+    return response, 200
+
+@view.route("/api/buynft", methods=["POST"])
+@cross_origin(supports_credentials=True)
+def buynft():
+    print(request.get_json())
+    data = request.get_json()
+    cookie = request.cookies.get("acc_tkn")
+    userid = jwt.decode(cookie, JWT_SECRET, algorithms=["HS256"])["user_id"]
+    user = models.User.query.filter_by(id=userid).first()
+    transaction = models.Transactions(
+        user_id=user.username,
+        transactiontype='split',
+        details=data
+    )
+    
+    print(transaction)
+    db.session.add(transaction)
+    db.session.commit()
+
+    response = make_response()
+    return response, 200
+
+@view.route("/api/paymentcomplete", methods=["POST"])
+def paymentdone():
+    response = make_response()
+    return response, 200
 
 @view.route("/api/register", methods=["POST"])
 def register():
