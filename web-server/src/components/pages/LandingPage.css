@@ -40,4 +40,11 @@
   .button:last-child {
     margin-right: 0;
   }
+  .dropdowns{
+    display: inline-flex;
+  }
+  .dropdown{
+    margin-right: 10px;
+  }
+
   
