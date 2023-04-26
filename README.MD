@@ -1,6 +1,9 @@
 # DegenSplit
 ## Payments management and NFT Co-ownership platform
-https://raw.githubusercontent.com/vaibhavdevnani7/buildweek_pilani/main/degensplit.mp4
+
+https://user-images.githubusercontent.com/32645054/234455494-80ba85a5-99c1-428e-90b6-8dd7c78c3a90.mp4
+
+
 
 Degensplit is a platform where you can split transaction with your friends, request nmoney from friends and co own nfts with your friends. You can do all this with just the usernames of your friends and you can do transactions in any token and on any chain thanks to router protocol making token swaps and cross chain transactions seamless removing all the hassle of swapping tokens, switching chains while making transactions.
 
