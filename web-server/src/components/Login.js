@@ -48,9 +48,9 @@ const Login = () => {
     <div className="wallets-container">
       <div className="container">
         <h2>Log in or Create an account</h2>
-        <img onClick={() => navigate(-1)} className="close-button" src={process.env.PUBLIC_URL + "/img/icons/close.webp"} />
+        <img onClick={() => navigate(-1)} className="close-button" src={"" + "/img/icons/close.webp"} />
         <div className="wallets-wrapper">
-          <Wallet onClick={connectWithMetamask} name="Metamask" desc="WEB3" icon={process.env.PUBLIC_URL + "/img/icons/metamask.webp"} />
+          <Wallet onClick={connectWithMetamask} name="Metamask" desc="WEB3" icon={"" + "/img/icons/metamask.webp"} />
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@ const Register = () => {
     <div className="register-container">
       <div className="steps-container">
         <div className="column logo">
-          <img src={process.env.PUBLIC_URL + "/img/logo.png"} />
+          <img src={"" + "/img/logo.png"} />
         </div>
         <div className={"column steps step-" + provider.step}>
           <div className="step-texts">

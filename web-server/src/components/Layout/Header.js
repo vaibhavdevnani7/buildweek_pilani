@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header>
       <div className="logo-wrapper">
-        {/* <img className="logo" src={process.env.PUBLIC_URL + "/img/logo.png"} /> */}
+        {/* <img className="logo" src={"" + "/img/logo.png"} /> */}
         DegenSplit
       </div>
       {globalContext.isLogged ? <AccountBar/> : <SignInButton />}
@@ -18,10 +18,10 @@ const AccountBar = () => {
   return (
     <div className="accountbar-container">
       <div className="ethereum">
-        <img src={process.env.PUBLIC_URL + "/img/icons/polygon.svg"} />
+        <img src={"" + "/img/icons/polygon.svg"} />
       </div>
       <div className="profile">
-        <img src={process.env.PUBLIC_URL + "/img/AvatarImg.webp"} />
+        <img src={"" + "/img/AvatarImg.webp"} />
       </div>
     </div>
   )
