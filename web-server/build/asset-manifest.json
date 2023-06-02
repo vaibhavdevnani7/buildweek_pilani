@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ac48f6e5.css",
+    "main.js": "/static/js/main.8ce17d78.js",
+    "static/media/bg-wallet.webp": "/static/media/bg-wallet.913aa5cf8ccd153a043f.webp",
+    "index.html": "/index.html",
+    "main.ac48f6e5.css.map": "/static/css/main.ac48f6e5.css.map",
+    "main.8ce17d78.js.map": "/static/js/main.8ce17d78.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ac48f6e5.css",
+    "static/js/main.8ce17d78.js"
+  ]
+}
